@@ -1,0 +1,29 @@
+name: Deploy to ServerByte
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Sync Code to ServerByte
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📂 Sync files via FTPS to ServerByte
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: public_html/bus/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/tests/**
+            **/scratch/**
+            README.md
+            install.php

@@ -1,0 +1,15 @@
+# Production Secrets & Local Overrides
+config/db.prod.php
+.env
+*.local.php
+
+# Operating System & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Temporary test / scratch files
+scratch/
+scratch_*
